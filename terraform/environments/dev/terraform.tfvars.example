@@ -1,0 +1,76 @@
+# Environment settings
+environment = "dev"
+project_name = "social-hub"
+aws_region = "us-east-1"
+aws_account_id = "600035690104"
+
+# Bitbucket settings
+bitbucket_owner = "your-bitbucket-owner"
+bitbucket_repo = "your-bitbucket-repo"
+bitbucket_branch = "main"
+
+# Use existing VPC (set to true to use existing resources)
+use_existing_vpc = true
+existing_vpc_id = "vpc-2479075e"
+existing_subnet_ids = [
+  "subnet-66eb9d58",
+  "subnet-2e1cee63",
+  "subnet-1d36147a"
+]
+
+# Container settings
+container_port = 3000
+cpu = 512
+memory = 2048
+
+# ECR repository
+ecr_repository_name = "dev-social-hub"
+
+# Application environment variables
+app_environment_variables = [
+  {
+    name  = "AYRSHARE_API_URL"
+    value = "https://app.ayrshare.com/api"
+  },
+  {
+    name  = "AYRSHARE_DOMAIN"
+    value = "id-6ne1y"
+  },
+  {
+    name  = "AYRSHARE_SECRET_NAME"
+    value = "social-hub/ayrshare-private-key"
+  },
+  {
+    name  = "PADDLE_BASE_URL"
+    value = "https://fau9i1usal.execute-api.us-east-1.amazonaws.com/teste"
+  },
+  {
+    name  = "CORS_ORIGIN"
+    value = "https://dev.wisecut.ai,https://beta.wisecut.ai,https://app.wisecut.ai"
+  },
+  {
+    name  = "WISECUT_API_URL"
+    value = "https://api.wisecut.video/dev"
+  }
+]
+
+# Sensitive environment variables (stored in AWS Secrets Manager or Parameter Store)
+# These should be created separately in AWS and referenced here
+app_secrets = [
+  # Example using AWS Secrets Manager:
+  # {
+  #   name      = "DATABASE_URL"
+  #   valueFrom = "arn:aws:secretsmanager:us-east-1:600035690104:secret:dev/social-hub/database-url:password::"
+  # }
+  # Example using AWS Systems Manager Parameter Store:
+  # {
+  #   name      = "AYRSHARE_API_KEY"
+  #   valueFrom = "arn:aws:ssm:us-east-1:600035690104:parameter/dev/social-hub/ayrshare-api-key"
+  # }
+]
+
+# Tags
+tags = {
+  Owner = "DevOps Team"
+  CostCenter = "Engineering"
+}
